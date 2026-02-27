@@ -1,0 +1,1363 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Undangku — Undangan Digital yang Beda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@400;500;700;800&family=Caveat:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --cream: #fff8f0;
+        --coral: #ff5733;
+        --yellow: #ffd23f;
+        --mint: #3ddbd9;
+        --navy: #0d1b2a;
+        --pink: #ff85a1;
+        --purple: #7b2fbe;
+        --green: #00c49a;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--cream);
+        color: var(--navy);
+        font-family: 'Cabinet Grotesk', sans-serif;
+        overflow-x: hidden;
+        cursor: none;
+      }
+
+      /* Custom cursor */
+      .cursor {
+        width: 20px;
+        height: 20px;
+        background: var(--coral);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transition:
+          transform 0.15s ease,
+          background 0.2s;
+        transform: translate(-50%, -50%);
+      }
+      .cursor-follower {
+        width: 40px;
+        height: 40px;
+        border: 2px solid var(--navy);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9998;
+        transition: transform 0.35s ease;
+        transform: translate(-50%, -50%);
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 48px;
+        backdrop-filter: blur(12px);
+        background: rgba(255, 248, 240, 0.85);
+        border-bottom: 2px solid var(--navy);
+      }
+      .logo {
+        font-family: 'Clash Display', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -1px;
+      }
+      .logo span {
+        color: var(--coral);
+      }
+      nav ul {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+      }
+      nav ul a {
+        text-decoration: none;
+        color: var(--navy);
+        font-weight: 700;
+        font-size: 15px;
+        position: relative;
+      }
+      nav ul a::after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--coral);
+        transform: scaleX(0);
+        transition: transform 0.2s;
+        transform-origin: left;
+      }
+      nav ul a:hover::after {
+        transform: scaleX(1);
+      }
+      .nav-cta {
+        background: var(--navy);
+        color: var(--cream) !important;
+        padding: 10px 24px;
+        border-radius: 100px;
+        font-weight: 800 !important;
+        transition:
+          background 0.2s,
+          color 0.2s !important;
+      }
+      .nav-cta:hover {
+        background: var(--coral) !important;
+      }
+      .nav-cta::after {
+        display: none !important;
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 120px 48px 80px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(255, 87, 51, 0.12) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 10% 80%,
+            rgba(61, 219, 217, 0.12) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 50% 50%,
+            rgba(255, 210, 63, 0.06) 0%,
+            transparent 70%
+          );
+      }
+
+      /* Floating deco shapes */
+      .deco {
+        position: absolute;
+        pointer-events: none;
+        animation: float 4s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-14px) rotate(5deg);
+        }
+      }
+      .deco-1 {
+        top: 15%;
+        right: 12%;
+        font-size: 64px;
+        animation-delay: 0s;
+      }
+      .deco-2 {
+        top: 60%;
+        right: 6%;
+        font-size: 48px;
+        animation-delay: 0.8s;
+      }
+      .deco-3 {
+        bottom: 15%;
+        left: 8%;
+        font-size: 56px;
+        animation-delay: 1.4s;
+      }
+      .deco-4 {
+        top: 25%;
+        left: 3%;
+        font-size: 40px;
+        animation-delay: 0.4s;
+      }
+
+      .hero-content {
+        max-width: 700px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--yellow);
+        color: var(--navy);
+        padding: 8px 18px;
+        border-radius: 100px;
+        font-weight: 800;
+        font-size: 13px;
+        border: 2px solid var(--navy);
+        margin-bottom: 28px;
+        animation: slideUp 0.6s ease both;
+      }
+
+      .hero-tag .dot {
+        width: 8px;
+        height: 8px;
+        background: var(--coral);
+        border-radius: 50%;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.4);
+        }
+      }
+
+      h1 {
+        font-family: 'Clash Display', sans-serif;
+        font-size: clamp(52px, 7vw, 90px);
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -3px;
+        animation: slideUp 0.6s 0.1s ease both;
+      }
+
+      h1 .highlight {
+        position: relative;
+        display: inline-block;
+        color: var(--coral);
+      }
+      h1 .highlight::after {
+        content: '';
+        position: absolute;
+        bottom: 4px;
+        left: 0;
+        right: 0;
+        height: 8px;
+        background: var(--yellow);
+        z-index: -1;
+        border-radius: 4px;
+      }
+
+      .hero-sub {
+        font-size: 20px;
+        line-height: 1.6;
+        max-width: 520px;
+        margin: 24px 0 40px;
+        color: #444;
+        animation: slideUp 0.6s 0.2s ease both;
+      }
+
+      .hero-btns {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        animation: slideUp 0.6s 0.3s ease both;
+      }
+
+      .btn-primary {
+        background: var(--coral);
+        color: #fff;
+        padding: 16px 36px;
+        border-radius: 100px;
+        font-weight: 800;
+        font-size: 16px;
+        border: 3px solid var(--navy);
+        text-decoration: none;
+        box-shadow: 5px 5px 0 var(--navy);
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+        display: inline-block;
+      }
+      .btn-primary:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 8px 8px 0 var(--navy);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--navy);
+        padding: 16px 36px;
+        border-radius: 100px;
+        font-weight: 800;
+        font-size: 16px;
+        border: 3px solid var(--navy);
+        text-decoration: none;
+        box-shadow: 5px 5px 0 var(--navy);
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s,
+          background 0.15s;
+        display: inline-block;
+      }
+      .btn-secondary:hover {
+        background: var(--yellow);
+        transform: translate(-3px, -3px);
+        box-shadow: 8px 8px 0 var(--navy);
+      }
+
+      /* URL preview pill */
+      .url-preview {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: var(--navy);
+        color: var(--cream);
+        padding: 14px 24px;
+        border-radius: 16px;
+        font-size: 15px;
+        font-weight: 500;
+        max-width: fit-content;
+        margin-top: 32px;
+        animation: slideUp 0.6s 0.4s ease both;
+        border: 2px solid var(--navy);
+      }
+      .url-preview .you {
+        color: var(--yellow);
+        font-weight: 800;
+      }
+      .url-preview .dot-dot {
+        color: var(--mint);
+      }
+
+      /* Stats strip */
+      .stats-strip {
+        background: var(--navy);
+        border-top: 3px solid var(--navy);
+        border-bottom: 3px solid var(--navy);
+        padding: 20px 48px;
+        display: flex;
+        justify-content: center;
+        gap: 64px;
+        flex-wrap: wrap;
+      }
+      .stat {
+        text-align: center;
+        color: var(--cream);
+      }
+      .stat-num {
+        font-family: 'Clash Display', sans-serif;
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--yellow);
+      }
+      .stat-label {
+        font-size: 13px;
+        opacity: 0.7;
+        margin-top: 2px;
+        font-weight: 600;
+      }
+
+      /* EVENTS */
+      .section {
+        padding: 100px 48px;
+      }
+
+      .section-label {
+        font-family: 'Caveat', cursive;
+        font-size: 22px;
+        color: var(--coral);
+        margin-bottom: 8px;
+      }
+
+      .section-title {
+        font-family: 'Clash Display', sans-serif;
+        font-size: clamp(36px, 4vw, 56px);
+        font-weight: 700;
+        letter-spacing: -2px;
+        line-height: 1.1;
+        margin-bottom: 60px;
+      }
+
+      .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .event-card {
+        border: 3px solid var(--navy);
+        border-radius: 24px;
+        padding: 28px 24px;
+        text-align: center;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        box-shadow: 5px 5px 0 var(--navy);
+        cursor: default;
+        position: relative;
+        overflow: hidden;
+      }
+      .event-card:hover {
+        transform: translate(-4px, -4px);
+        box-shadow: 9px 9px 0 var(--navy);
+      }
+      .event-card.c1 {
+        background: #ffe8e2;
+      }
+      .event-card.c2 {
+        background: #fff3cc;
+      }
+      .event-card.c3 {
+        background: #d4f7f4;
+      }
+      .event-card.c4 {
+        background: #f0e4ff;
+      }
+      .event-card.c5 {
+        background: #e2ffe8;
+      }
+      .event-card.c6 {
+        background: #ffe2f0;
+      }
+
+      .event-emoji {
+        font-size: 48px;
+        margin-bottom: 12px;
+        display: block;
+      }
+      .event-name {
+        font-weight: 800;
+        font-size: 16px;
+      }
+
+      /* HOW IT WORKS */
+      .how-bg {
+        background: var(--navy);
+        color: var(--cream);
+        border-radius: 32px;
+        padding: 80px 64px;
+        margin: 0 48px;
+        position: relative;
+        overflow: hidden;
+      }
+      .how-bg .section-label {
+        color: var(--yellow);
+      }
+      .how-bg .section-title {
+        color: var(--cream);
+        margin-bottom: 56px;
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 32px;
+      }
+
+      .step {
+        position: relative;
+      }
+
+      .step-num {
+        font-family: 'Clash Display', sans-serif;
+        font-size: 80px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.07);
+        line-height: 1;
+        position: absolute;
+        top: -16px;
+        right: 0;
+      }
+      .step-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin-bottom: 16px;
+      }
+      .step h3 {
+        font-size: 20px;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+      .step p {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.6;
+      }
+
+      /* TEMPLATES */
+      .templates-section {
+        padding: 100px 48px;
+      }
+
+      .templates-scroll {
+        display: flex;
+        gap: 24px;
+        overflow-x: auto;
+        padding-bottom: 16px;
+        scrollbar-width: none;
+      }
+      .templates-scroll::-webkit-scrollbar {
+        display: none;
+      }
+
+      .template-card {
+        flex: 0 0 280px;
+        border: 3px solid var(--navy);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 6px 6px 0 var(--navy);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        cursor: pointer;
+      }
+      .template-card:hover {
+        transform: translate(-4px, -4px);
+        box-shadow: 10px 10px 0 var(--navy);
+      }
+      .template-preview {
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 48px;
+        position: relative;
+        font-family: 'Clash Display', sans-serif;
+      }
+      .tp1 {
+        background: linear-gradient(135deg, #ffb347, #ff5733);
+      }
+      .tp2 {
+        background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+      }
+      .tp3 {
+        background: linear-gradient(135deg, #84fab0, #8fd3f4);
+      }
+      .tp4 {
+        background: linear-gradient(135deg, #fd746c, #ff9068);
+      }
+      .tp5 {
+        background: linear-gradient(135deg, #2cd8d5, #c5c1ff);
+      }
+
+      .template-info {
+        padding: 16px 20px;
+        background: white;
+      }
+      .template-name {
+        font-weight: 800;
+        font-size: 16px;
+      }
+      .template-tag {
+        display: inline-block;
+        background: var(--yellow);
+        color: var(--navy);
+        padding: 3px 10px;
+        border-radius: 100px;
+        font-size: 12px;
+        font-weight: 800;
+        margin-top: 6px;
+        border: 2px solid var(--navy);
+      }
+
+      .template-preview-text {
+        color: white;
+        font-size: 22px;
+        font-weight: 700;
+        text-align: center;
+        padding: 20px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        line-height: 1.3;
+      }
+
+      /* PRICING */
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+        max-width: 960px;
+      }
+
+      .price-card {
+        border: 3px solid var(--navy);
+        border-radius: 24px;
+        padding: 36px 32px;
+        position: relative;
+        box-shadow: 6px 6px 0 var(--navy);
+        background: white;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .price-card:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 9px 9px 0 var(--navy);
+      }
+      .price-card.featured {
+        background: var(--coral);
+        color: white;
+      }
+      .price-badge {
+        position: absolute;
+        top: -14px;
+        right: 24px;
+        background: var(--yellow);
+        color: var(--navy);
+        padding: 4px 14px;
+        border-radius: 100px;
+        font-size: 12px;
+        font-weight: 800;
+        border: 2px solid var(--navy);
+      }
+      .price-name {
+        font-weight: 800;
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+      .price-amount {
+        font-family: 'Clash Display', sans-serif;
+        font-size: 52px;
+        font-weight: 700;
+        letter-spacing: -2px;
+        line-height: 1;
+        margin: 16px 0 4px;
+      }
+      .price-amount sup {
+        font-size: 24px;
+        vertical-align: super;
+      }
+      .price-period {
+        font-size: 14px;
+        opacity: 0.7;
+        margin-bottom: 24px;
+      }
+      .price-features {
+        list-style: none;
+      }
+      .price-features li {
+        padding: 10px 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        font-size: 15px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .price-card.featured .price-features li {
+        border-top-color: rgba(255, 255, 255, 0.2);
+      }
+      .check {
+        font-size: 16px;
+      }
+      .price-btn {
+        display: block;
+        text-align: center;
+        margin-top: 28px;
+        padding: 14px;
+        border-radius: 100px;
+        font-weight: 800;
+        font-size: 15px;
+        text-decoration: none;
+        border: 3px solid var(--navy);
+        transition:
+          background 0.15s,
+          color 0.15s;
+        box-shadow: 4px 4px 0 var(--navy);
+      }
+      .price-card:not(.featured) .price-btn {
+        background: var(--navy);
+        color: var(--cream);
+      }
+      .price-card.featured .price-btn {
+        background: var(--yellow);
+        color: var(--navy);
+      }
+      .price-card:not(.featured) .price-btn:hover {
+        background: var(--coral);
+      }
+      .price-card.featured .price-btn:hover {
+        background: white;
+      }
+
+      /* TESTIMONIALS */
+      .testi-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+      }
+
+      .testi-card {
+        border: 3px solid var(--navy);
+        border-radius: 24px;
+        padding: 28px;
+        background: white;
+        box-shadow: 5px 5px 0 var(--navy);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .testi-card:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 8px 8px 0 var(--navy);
+      }
+      .testi-quote {
+        font-family: 'Caveat', cursive;
+        font-size: 20px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+      }
+      .testi-person {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .testi-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        border: 2px solid var(--navy);
+        font-weight: 800;
+      }
+      .testi-name {
+        font-weight: 800;
+        font-size: 14px;
+      }
+      .testi-event {
+        font-size: 12px;
+        color: #888;
+      }
+      .stars {
+        color: var(--yellow);
+        font-size: 14px;
+        margin-bottom: 16px;
+      }
+
+      /* CTA */
+      .cta-section {
+        margin: 0 48px 80px;
+        background: var(--yellow);
+        border: 3px solid var(--navy);
+        border-radius: 32px;
+        padding: 80px 64px;
+        text-align: center;
+        box-shadow: 8px 8px 0 var(--navy);
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-section h2 {
+        font-family: 'Clash Display', sans-serif;
+        font-size: clamp(36px, 5vw, 64px);
+        font-weight: 700;
+        letter-spacing: -2px;
+        line-height: 1.1;
+        margin-bottom: 20px;
+      }
+      .cta-section p {
+        font-size: 18px;
+        max-width: 480px;
+        margin: 0 auto 36px;
+        font-weight: 500;
+      }
+      .cta-url {
+        font-family: 'Clash Display', sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        background: white;
+        padding: 16px 32px;
+        border-radius: 16px;
+        display: inline-block;
+        margin-bottom: 36px;
+        border: 3px solid var(--navy);
+        box-shadow: 4px 4px 0 var(--navy);
+      }
+      .cta-url span {
+        color: var(--coral);
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--navy);
+        color: var(--cream);
+        padding: 60px 48px 32px;
+        border-top: 3px solid var(--navy);
+      }
+      .footer-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 48px;
+        padding-bottom: 48px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .footer-brand .logo {
+        color: var(--cream);
+        margin-bottom: 12px;
+        display: block;
+      }
+      .footer-brand p {
+        font-size: 14px;
+        opacity: 0.6;
+        max-width: 240px;
+        line-height: 1.6;
+      }
+      .footer-links h4 {
+        font-weight: 800;
+        margin-bottom: 16px;
+        font-size: 14px;
+        opacity: 0.5;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .footer-links ul {
+        list-style: none;
+      }
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+      .footer-links a {
+        color: var(--cream);
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+        opacity: 0.8;
+        transition:
+          opacity 0.2s,
+          color 0.2s;
+      }
+      .footer-links a:hover {
+        opacity: 1;
+        color: var(--yellow);
+      }
+      .footer-bottom {
+        padding-top: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        opacity: 0.5;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        nav {
+          padding: 16px 20px;
+        }
+        nav ul {
+          display: none;
+        }
+        .hero {
+          padding: 100px 20px 60px;
+        }
+        .stats-strip {
+          padding: 20px;
+          gap: 32px;
+        }
+        .section {
+          padding: 60px 20px;
+        }
+        .how-bg {
+          margin: 0 20px;
+          padding: 48px 28px;
+        }
+        .templates-section,
+        .cta-section {
+          padding: 60px 28px;
+        }
+        .cta-section {
+          margin: 0 20px 60px;
+        }
+        footer {
+          padding: 48px 20px 24px;
+        }
+        .pricing-grid,
+        .testi-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- NAV -->
+    <nav>
+      <div class="logo">undang<span>ku</span></div>
+      <ul>
+        <li><a href="#events">Event</a></li>
+        <li><a href="#how">Cara Kerja</a></li>
+        <li><a href="#pricing">Harga</a></li>
+        <li><a href="#cta" class="nav-cta">Mulai Sekarang</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="deco deco-1">🎉</div>
+      <div class="deco deco-2">💌</div>
+      <div class="deco deco-3">✨</div>
+      <div class="deco deco-4">🎊</div>
+
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span class="dot"></span>
+          Undangan digital yang beda dari yang lain
+        </div>
+        <h1>
+          Undangan<br />
+          <span class="highlight">Digital</span><br />
+          Seseru Acaramu
+        </h1>
+        <p class="hero-sub">
+          Buat undangan wedding, ulang tahun, buka puasa, reuni — semua di satu
+          tempat. Kamu dapat domain sendiri yang bisa dibagikan ke siapa saja!
+        </p>
+        <div class="hero-btns">
+          <a href="#" class="btn-primary">Buat Undanganmu 🚀</a>
+          <a href="#" class="btn-secondary">Lihat Contoh</a>
+        </div>
+        <div class="url-preview">
+          💡 Domain kamu sendiri:
+          <strong
+            ><span class="you">namakamu</span
+            ><span class="dot-dot">.undangku.com</span></strong
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats-strip">
+      <div class="stat">
+        <div class="stat-num">10K+</div>
+        <div class="stat-label">Undangan Dikirim</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Pelanggan Puas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Template Cantik</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Jenis Acara</div>
+      </div>
+    </div>
+
+    <!-- EVENTS -->
+    <section class="section" id="events">
+      <div class="section-label">🎈 Untuk semua momen</div>
+      <h2 class="section-title">Semua Acara,<br />Satu Platform</h2>
+      <div class="events-grid">
+        <div class="event-card c1">
+          <span class="event-emoji">💍</span>
+          <div class="event-name">Pernikahan</div>
+        </div>
+        <div class="event-card c2">
+          <span class="event-emoji">🎂</span>
+          <div class="event-name">Ulang Tahun</div>
+        </div>
+        <div class="event-card c3">
+          <span class="event-emoji">🌙</span>
+          <div class="event-name">Buka Puasa</div>
+        </div>
+        <div class="event-card c4">
+          <span class="event-emoji">🎓</span>
+          <div class="event-name">Wisuda</div>
+        </div>
+        <div class="event-card c5">
+          <span class="event-emoji">🤝</span>
+          <div class="event-name">Reuni</div>
+        </div>
+        <div class="event-card c6">
+          <span class="event-emoji">🏠</span>
+          <div class="event-name">Syukuran</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" style="padding-bottom: 100px">
+      <div class="how-bg">
+        <div class="section-label">✦ Mudah banget</div>
+        <h2 class="section-title">3 Langkah &amp;<br />Undanganmu Jadi!</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div class="step-icon">🎨</div>
+            <h3>Pilih Template</h3>
+            <p>
+              Pilih dari 50+ template cantik yang udah didesain khusus buat
+              berbagai acara.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div class="step-icon">✏️</div>
+            <h3>Isi & Kustomisasi</h3>
+            <p>
+              Masukkan detail acaramu — nama, tanggal, lokasi, foto, musik, dan
+              lainnya. Semua bisa kamu ubah!
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div class="step-icon">🚀</div>
+            <h3>Bagikan Link-mu</h3>
+            <p>
+              Dapatkan link
+              <strong style="color: var(--yellow)"
+                >namakamu.undangku.com</strong
+              >
+              dan bagikan ke semua tamu via WA, IG, atau email.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEMPLATES -->
+    <section class="templates-section" id="templates">
+      <div class="section-label">🖼️ Yang telah di desain</div>
+      <h2 class="section-title">Undangan yang<br />Bikin Tamu Terpesona</h2>
+      <div class="templates-scroll">
+        <div class="template-card">
+          <div class="template-preview tp1">
+            <div class="template-preview-text">
+              Hanno & Ge<br /><small style="font-size: 14px; opacity: 0.9"
+                >Wedding · 17 Maret 2026</small
+              >
+            </div>
+          </div>
+          <div class="template-info">
+            <div class="template-name">Golden Sunset</div>
+            <div class="template-tag">Wedding</div>
+          </div>
+        </div>
+        <div class="template-card">
+          <div class="template-preview tp2">
+            <div class="template-preview-text">
+              Happy 25th<br />Birthday Sarah! 🎂
+            </div>
+          </div>
+          <div class="template-info">
+            <div class="template-name">Purple Dream</div>
+            <div class="template-tag">Birthday</div>
+          </div>
+        </div>
+        <div class="template-card">
+          <div class="template-preview tp3">
+            <div class="template-preview-text">
+              Buka Bersama<br />Keluarga Besar 🌙
+            </div>
+          </div>
+          <div class="template-info">
+            <div class="template-name">Mint Fresh</div>
+            <div class="template-tag">Buka Puasa</div>
+          </div>
+        </div>
+        <div class="template-card">
+          <div class="template-preview tp4">
+            <div class="template-preview-text">Reuni Angkatan<br />2010 🎉</div>
+          </div>
+          <div class="template-info">
+            <div class="template-name">Warm Coral</div>
+            <div class="template-tag">Reuni</div>
+          </div>
+        </div>
+        <div class="template-card">
+          <div class="template-preview tp5">
+            <div class="template-preview-text">Wisuda Rina<br />S.Kom. 🎓</div>
+          </div>
+          <div class="template-info">
+            <div class="template-name">Cool Wave</div>
+            <div class="template-tag">Wisuda</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section" id="pricing">
+      <div class="section-label">💰 Harga transparan</div>
+      <h2 class="section-title">Mulai dari<br />Harga Kopi ☕</h2>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-name">Starter</div>
+          <div class="price-amount"><sup>Rp</sup>49K</div>
+          <div class="price-period">per undangan</div>
+          <ul class="price-features">
+            <li><span class="check">✅</span> 1 template pilihan</li>
+            <li><span class="check">✅</span> Domain namakamu.undangku.com</li>
+            <li><span class="check">✅</span> RSVP tamu</li>
+            <li><span class="check">✅</span> Aktif 3 bulan</li>
+          </ul>
+          <a href="#" class="price-btn">Pilih Starter</a>
+        </div>
+        <div class="price-card featured">
+          <div class="price-badge">⭐ Terpopuler</div>
+          <div class="price-name">Premium</div>
+          <div class="price-amount"><sup>Rp</sup>99K</div>
+          <div class="price-period">per undangan</div>
+          <ul class="price-features">
+            <li><span class="check">✅</span> Semua template</li>
+            <li><span class="check">✅</span> Domain namakamu.undangku.com</li>
+            <li><span class="check">✅</span> RSVP + konfirmasi otomatis</li>
+            <li><span class="check">✅</span> Musik latar</li>
+            <li><span class="check">✅</span> Galeri foto</li>
+            <li><span class="check">✅</span> Aktif 12 bulan</li>
+          </ul>
+          <a href="#" class="price-btn">Pilih Premium</a>
+        </div>
+        <div class="price-card">
+          <div class="price-name">Pro</div>
+          <div class="price-amount"><sup>Rp</sup>199K</div>
+          <div class="price-period">per undangan</div>
+          <ul class="price-features">
+            <li><span class="check">✅</span> Semua fitur Premium</li>
+            <li><span class="check">✅</span> Custom domain sendiri</li>
+            <li><span class="check">✅</span> Desain custom request</li>
+            <li><span class="check">✅</span> Google Maps terintegrasi</li>
+            <li><span class="check">✅</span> Live countdown</li>
+            <li><span class="check">✅</span> Aktif selamanya</li>
+          </ul>
+          <a href="#" class="price-btn">Pilih Pro</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section" style="padding-top: 0" id="testi">
+      <div class="section-label">❤️ Kata mereka</div>
+      <h2 class="section-title">Ribuan Tamu<br />Sudah Terkesan</h2>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <div class="testi-quote">
+            "Tamuku banyak yang nanya bikin undangan dimana, katanya keren
+            banget! Link-nya juga gampang dibagiin."
+          </div>
+          <div class="testi-person">
+            <div class="testi-avatar" style="background: #ffe8e2">👰</div>
+            <div>
+              <div class="testi-name">Sari & Dika</div>
+              <div class="testi-event">Wedding · Surabaya</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <div class="testi-quote">
+            "Buat undangan ulang tahun anak, prosesnya cepet banget. 15 menit
+            udah jadi dan langsung bisa dishare ke WA group."
+          </div>
+          <div class="testi-person">
+            <div class="testi-avatar" style="background: #fff3cc">🎂</div>
+            <div>
+              <div class="testi-name">Mama Rafa</div>
+              <div class="testi-event">Birthday · Jakarta</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <div class="testi-quote">
+            "Fitur RSVP-nya keren! Bisa langsung tau siapa yang hadir. Jauh
+            lebih praktis dari undangan fisik yang makan biaya."
+          </div>
+          <div class="testi-person">
+            <div class="testi-avatar" style="background: #d4f7f4">🌙</div>
+            <div>
+              <div class="testi-name">Ustadz Fariz</div>
+              <div class="testi-event">Buka Puasa · Bandung</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-section" id="cta">
+      <h2>Siap Buat Undanganmu<br />yang Beda? 🎉</h2>
+      <p>
+        Ratusan orang sudah pakai Undangku untuk momen spesial mereka. Giliranmu
+        sekarang!
+      </p>
+      <div class="cta-url"><span>namakamu</span>.undangku.com</div>
+      <br />
+      <a
+        href="#"
+        class="btn-primary"
+        style="font-size: 18px; padding: 18px 48px"
+      >
+        Mulai Gratis Sekarang ✨
+      </a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span
+            class="logo"
+            style="
+              font-family: 'Clash Display', sans-serif;
+              font-size: 28px;
+              font-weight: 700;
+            "
+            >undang<span style="color: var(--yellow)">ku</span></span
+          >
+          <p style="margin-top: 12px">
+            Undangan digital yang bikin acaramu makin berkesan dan nggak
+            terlupakan.
+          </p>
+        </div>
+        <div class="footer-links">
+          <h4>Produk</h4>
+          <ul>
+            <li><a href="#">Template</a></li>
+            <li><a href="#">Fitur</a></li>
+            <li><a href="#">Harga</a></li>
+            <li><a href="#">Contoh Live</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Dukungan</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Tutorial</a></li>
+            <li><a href="#">Hubungi Kami</a></li>
+            <li><a href="#">WhatsApp</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Syarat & Ketentuan</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Undangku. Dibuat dengan ❤️ di Indonesia 🇮🇩</span>
+        <span>undangku.com</span>
+      </div>
+    </footer>
+
+    <script>
+      // Custom cursor
+      const cursor = document.getElementById('cursor');
+      const follower = document.getElementById('cursorFollower');
+      let mouseX = 0,
+        mouseY = 0,
+        followerX = 0,
+        followerY = 0;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
+      });
+
+      function animateFollower() {
+        followerX += (mouseX - followerX) * 0.12;
+        followerY += (mouseY - followerY) * 0.12;
+        follower.style.left = followerX + 'px';
+        follower.style.top = followerY + 'px';
+        requestAnimationFrame(animateFollower);
+      }
+      animateFollower();
+
+      document.querySelectorAll('a, button').forEach((el) => {
+        el.addEventListener('mouseenter', () => {
+          cursor.style.transform = 'translate(-50%, -50%) scale(2)';
+          cursor.style.background = 'var(--yellow)';
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+          cursor.style.background = 'var(--coral)';
+        });
+      });
+
+      // Scroll reveal
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.style.opacity = '1';
+              e.target.style.transform = 'translateY(0)';
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document
+        .querySelectorAll(
+          '.event-card, .step, .price-card, .testi-card, .template-card',
+        )
+        .forEach((el) => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(30px)';
+          el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          observer.observe(el);
+        });
+
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener('click', (e) => {
+          const target = document.querySelector(a.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
