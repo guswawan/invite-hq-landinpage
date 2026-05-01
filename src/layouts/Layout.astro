@@ -1,0 +1,102 @@
+---
+import "../styles/global.css";
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { 
+	title, 
+	description = "Undangku — Platform undangan digital dengan desain unik dan ilustrasi tangan yang beda. Buat undangan pernikahan, ulang tahun, dan wisuda dengan mudah." 
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="id">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://undangku.com/" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="/og-image.png" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://undangku.com/" />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content="/og-image.png" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@400;500;700;800&family=Caveat:wght@600&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div
+			id="cursor"
+			class="fixed w-5 h-5 bg-coral rounded-full pointer-events-none z-[9999] transition-transform duration-150 ease-out -translate-x-1/2 -translate-y-1/2"
+		>
+		</div>
+		<div
+			id="cursorFollower"
+			class="fixed w-10 h-10 border-2 border-navy rounded-full pointer-events-none z-[9998] transition-transform duration-300 ease-out -translate-x-1/2 -translate-y-1/2"
+		>
+		</div>
+
+		<slot />
+
+		<script>
+			// Custom cursor logic
+			const cursor = document.getElementById("cursor");
+			const follower = document.getElementById("cursorFollower");
+			let mouseX = 0,
+				mouseY = 0,
+				followerX = 0,
+				followerY = 0;
+
+			document.addEventListener("mousemove", (e) => {
+				mouseX = e.clientX;
+				mouseY = e.clientY;
+				if (cursor) {
+					cursor.style.left = mouseX + "px";
+					cursor.style.top = mouseY + "px";
+				}
+			});
+
+			function animateFollower() {
+				followerX += (mouseX - followerX) * 0.12;
+				followerY += (mouseY - followerY) * 0.12;
+				if (follower) {
+					follower.style.left = followerX + "px";
+					follower.style.top = followerY + "px";
+				}
+				requestAnimationFrame(animateFollower);
+			}
+			animateFollower();
+
+			document.querySelectorAll("a, button").forEach((el) => {
+				el.addEventListener("mouseenter", () => {
+					if (cursor) {
+						cursor.classList.add("scale-200", "bg-yellow");
+					}
+				});
+				el.addEventListener("mouseleave", () => {
+					if (cursor) {
+						cursor.classList.remove("scale-200", "bg-yellow");
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

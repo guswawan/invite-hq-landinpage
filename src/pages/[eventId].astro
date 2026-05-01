@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DestinationCard from '../components/DestinationCard.astro';
+import PreviewModal from '../components/PreviewModal.astro';
+import { events } from '../data/events';
+
+export function getStaticPaths() {
+  return events.map((event) => ({
+    params: { eventId: event.id },
+    props: { event },
+  }));
+}
+
+const { event } = Astro.props;
+---
+
+<Layout 
+	title={`Koleksi ${event.name} — Undangku`}
+	description={`Lihat koleksi undangan digital ${event.name} terbaik di Undangku. Berbagai pilihan desain unik, hand-drawn, dan personal untuk acara spesialmu.`}
+>
+	<nav class="flex items-center justify-between px-12 py-5 backdrop-blur-md bg-cream/85 border-b-2 border-navy fixed top-0 left-0 right-0 z-[100]">
+		<a href="/" class="font-clash text-[28px] font-bold text-navy no-underline">undang<span class="text-coral">ku</span></a>
+	</nav>
+
+	<main class="max-w-[1200px] mx-auto mt-[140px] mb-[100px] px-12">
+		<div class="mb-15 text-center flex flex-col items-center">
+			<a href="/#events" class="inline-flex items-center gap-2 text-coral no-underline font-extrabold mb-6 transition-transform hover:-translate-x-1">
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+				Kembali ke Tema
+			</a>
+			<p class="section-label">🎈 {event.name}</p>
+			<h1 class="section-title">Koleksi {event.name}</h1>
+			<p class="text-lg text-navy/70 max-w-[500px] mt-2.5">Pilih desain yang paling berkesan untuk hari spesialmu.</p>
+		</div>
+
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+			{event.collections.map((item) => (
+				<DestinationCard {...item} />
+			))}
+		</div>
+	</main>
+
+	<footer class="bg-navy text-cream py-15 px-12 text-center">
+		<p class="font-bold">© 2026 Undangku — Dibuat dengan ❤️ di Indonesia</p>
+	</footer>
+
+	<PreviewModal />
+</Layout>

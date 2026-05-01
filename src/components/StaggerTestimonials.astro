@@ -1,0 +1,187 @@
+---
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const testimonials = [
+  {
+    name: "Hanno & Gemilang",
+    text: "Gak nyesel pilih konsep Ready Concept-nya. Ilustrasinya bener-bener beda dari template pasaran. Tamu-tamu pada muji aesthetic banget!",
+    img: "https://api.dicebear.com/9.x/notionists/svg?seed=Hanno",
+    location: "Jakarta",
+  },
+  {
+    name: "Sekar & Habib",
+    text: "Paling suka fitur RSVP-nya sih. Gak perlu pusing rekap manual siapa yang dateng, semua datanya rapi. Sangat memudahkan buat persiapan katering.",
+    img: "https://api.dicebear.com/9.x/notionists/svg?seed=Sekar",
+    location: "Surabaya",
+  },
+  {
+    name: "Willy & Zidane",
+    text: "Bisa dapet domain willyzidane.undangku.com itu bener-bener bikin undangan kita terasa lebih 'official' dan personal. Makasih Undangku!",
+    img: "https://api.dicebear.com/9.x/notionists/svg?seed=Willy",
+    location: "Bandung",
+  },
+  {
+    name: "Andreas",
+    text: "Anak-anak kantor pada seneng dapet undangan ultah gini. Tinggal share ke grup, langsung bisa liat lokasi via maps di dalem undangannya. Top!",
+    img: "https://api.dicebear.com/9.x/notionists/svg?seed=Andreas",
+    location: "Surabaya",
+  },
+  {
+    name: "Andra & Andin",
+    text: "Awalnya bingung mau desain gimana, tapi Studio Collection-nya ngebantu banget. Link-nya juga cepet banget jadinya, tinggal masukin data langsung live!",
+    img: "https://api.dicebear.com/9.x/notionists/svg?seed=Andra",
+    location: "Bali",
+  },
+  {
+    name: "Ellina",
+    text: "Buat acara wisudaan jadi lebih seru pake undangan digital. Temen-temen kampus pada kaget pas buka link-nya, desainnya unik dan gak kaku.",
+    img: "https://api.dicebear.com/9.x/notionists/svg?seed=Brian",
+    location: "Malang",
+  },
+];
+---
+
+<div id="stagger-container" class="relative w-full h-[600px] overflow-hidden">
+  <div id="testimonials-wrapper" class="relative w-full h-full">
+    {
+      testimonials.map((t, i) => (
+        <div
+          class="testimonial-card absolute left-1/2 top-1/2 cursor-pointer border-3 p-8 transition-all duration-500 ease-in-out rounded-[24px]"
+          data-index={i}
+        >
+          <img
+            src={t.img}
+            alt={t.name}
+            class="mb-4 h-14 w-12 bg-gray-100 object-cover object-top border-2 border-navy rounded-lg shadow-[3px_3px_0_var(--color-navy)]"
+          />
+          <h3 class="card-text text-base sm:text-xl font-medium font-caveat leading-relaxed">
+            "{t.text}"
+          </h3>
+          <p class="card-by absolute bottom-8 left-8 right-8 mt-2 text-sm font-bold">
+            - {t.name}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="absolute bottom-10 left-1/2 flex -translate-x-1/2 gap-4 z-20">
+    <button
+      id="prev-testi"
+      class="flex h-12 w-12 items-center justify-center text-2xl transition-all bg-white border-3 border-navy text-navy rounded-full hover:bg-yellow hover:scale-110 shadow-[4px_4px_0_var(--color-navy)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+      aria-label="Previous testimonial"
+    >
+      <ChevronLeft size={24} />
+    </button>
+    <button
+      id="next-testi"
+      class="flex h-12 w-12 items-center justify-center text-2xl transition-all bg-white border-3 border-navy text-navy rounded-full hover:bg-yellow hover:scale-110 shadow-[4px_4px_0_var(--color-navy)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+      aria-label="Next testimonial"
+    >
+      <ChevronRight size={24} />
+    </button>
+  </div>
+</div>
+
+<script>
+  class StaggerTestimonials {
+    container: HTMLElement;
+    cards: HTMLElement[];
+    currentIndex: number;
+    cardSize: number;
+
+    constructor() {
+      this.container = document.getElementById("stagger-container")!;
+      this.cards = Array.from(document.querySelectorAll(".testimonial-card"));
+      this.currentIndex = 0;
+      this.cardSize = window.innerWidth >= 640 ? 365 : 290;
+
+      this.init();
+      this.setupEventListeners();
+    }
+
+    init() {
+      this.updateLayout();
+      window.addEventListener("resize", () => {
+        this.cardSize = window.innerWidth >= 640 ? 365 : 290;
+        this.updateLayout();
+      });
+    }
+
+    setupEventListeners() {
+      document
+        .getElementById("prev-testi")
+        ?.addEventListener("click", () => this.move(-1));
+      document
+        .getElementById("next-testi")
+        ?.addEventListener("click", () => this.move(1));
+
+      this.cards.forEach((card, i) => {
+        card.addEventListener("click", () => {
+          const position = this.getPosition(i);
+          if (position !== 0) this.move(position);
+        });
+      });
+    }
+
+    move(steps: number) {
+      this.currentIndex =
+        (this.currentIndex + steps + this.cards.length) % this.cards.length;
+      this.updateLayout();
+    }
+
+    getPosition(index: number) {
+      let pos = index - this.currentIndex;
+      const half = this.cards.length / 2;
+
+      if (pos > half) pos -= this.cards.length;
+      if (pos < -half) pos += this.cards.length;
+
+      return pos;
+    }
+
+    updateLayout() {
+      this.cards.forEach((card, i) => {
+        const position = this.getPosition(i);
+        const isCenter = position === 0;
+
+        // Apply classes
+        if (isCenter) {
+          card.classList.add("bg-navy", "text-white", "z-10");
+          card.classList.remove("bg-white", "text-navy", "z-0");
+          card.style.boxShadow = "8px 8px 0px 0px var(--color-navy)";
+        } else {
+          card.classList.remove("bg-navy", "text-white", "z-10");
+          card.classList.add("bg-white", "text-navy", "z-0");
+          card.style.boxShadow = "4px 4px 0px 0px var(--color-navy)";
+        }
+
+        // Apply dynamic styles
+        const translateX = (this.cardSize / 1.5) * position;
+        const translateY = isCenter ? -65 : position % 2 ? 15 : -15;
+        const rotate = isCenter ? 0 : position % 2 ? 2.5 : -2.5;
+
+        card.style.width = `${this.cardSize}px`;
+        card.style.height = `${this.cardSize}px`;
+        card.style.transform = `translate(-50%, -50%) translateX(${translateX}px) translateY(${translateY}px) rotate(${rotate}deg)`;
+
+        // Colors for sub-elements
+        const byText = card.querySelector(".card-by") as HTMLElement;
+        if (byText) {
+          byText.style.color = isCenter
+            ? "var(--color-yellow)"
+            : "var(--color-coral)";
+        }
+      });
+    }
+  }
+
+  // Initialize
+  new StaggerTestimonials();
+</script>
+
+<style>
+  .testimonial-card {
+    will-change: transform, box-shadow;
+  }
+</style>

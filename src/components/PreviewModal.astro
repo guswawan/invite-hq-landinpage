@@ -1,0 +1,117 @@
+---
+
+---
+
+<div
+	id="preview-modal"
+	class="fixed inset-0 z-[10000] hidden active:flex items-center justify-center p-5 group-[.active]:flex"
+>
+	<div class="modal-backdrop absolute inset-0 bg-navy/90 backdrop-blur-md">
+	</div>
+	<div
+		class="relative w-full h-[95vh] bg-navy border-3 border-navy rounded-[32px] overflow-hidden flex flex-col shadow-[12px_12px_0_var(--color-navy)] animate-modal-open"
+	>
+		<div
+			class="flex items-center justify-between px-6 py-4 bg-white border-b-2 border-navy"
+		>
+			<div class="font-clash font-bold text-base flex items-center gap-2">
+				<span class="w-2 h-2 bg-coral rounded-full animate-pulse"
+				></span>
+				Preview Undangan
+			</div>
+			<button
+				id="close-modal"
+				class="bg-navy text-white px-4 py-1.5 rounded-full font-extrabold text-[10px] cursor-pointer transition-all hover:bg-coral"
+			>
+				Tutup ✕
+			</button>
+		</div>
+		<div class="flex-1 relative bg-navy overflow-y-auto">
+			<div
+				class="absolute inset-0 flex items-center justify-center font-bold text-white/20 text-xs"
+			>
+				Memuat...
+			</div>
+			<iframe
+				id="preview-iframe"
+				src=""
+				class="relative w-full h-full z-10 border-none"
+				title="Live Preview Undangan Digital"
+				frameborder="0"></iframe>
+		</div>
+	</div>
+</div>
+
+<style>
+	#preview-modal.active {
+		display: flex;
+	}
+
+	.animate-modal-open {
+		animation: modalOpen 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+	}
+
+	@keyframes modalOpen {
+		from {
+			opacity: 0;
+			transform: scale(0.9) translateY(40px);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1) translateY(0);
+		}
+	}
+
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	.scrollbar-hide::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.scrollbar-hide {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
+</style>
+
+<script>
+	const modal = document.getElementById("preview-modal");
+	const iframe = document.getElementById(
+		"preview-iframe",
+	) as HTMLIFrameElement;
+	const closeBtn = document.getElementById("close-modal");
+	const backdrop = document.querySelector(".modal-backdrop");
+
+	function openModal(url: string) {
+		if (modal && iframe) {
+			iframe.src = url;
+			modal.classList.add("active");
+			document.body.style.overflow = "hidden";
+		}
+	}
+
+	function closeModal() {
+		if (modal && iframe) {
+			modal.classList.remove("active");
+			iframe.src = "";
+			document.body.style.overflow = "";
+		}
+	}
+
+	// Listen for clicks on cards
+	document.addEventListener("click", (e) => {
+		const card = (e.target as HTMLElement).closest(".destination-card");
+		if (card) {
+			const url = card.getAttribute("data-preview");
+			if (url) openModal(url);
+		}
+	});
+
+	closeBtn?.addEventListener("click", closeModal);
+	backdrop?.addEventListener("click", closeModal);
+
+	// Close on Escape
+	document.addEventListener("keydown", (e) => {
+		if (e.key === "Escape") closeModal();
+	});
+</script>

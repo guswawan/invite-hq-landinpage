@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #fff8f0;
+  --color-coral: #ff5733;
+  --color-yellow: #ffd23f;
+  --color-mint: #3ddbd9;
+  --color-navy: #0d1b2a;
+  --color-pink: #ff85a1;
+  --color-purple: #7b2fbe;
+  --color-green: #00c49a;
+
+  --font-clash: 'Clash Display', sans-serif;
+  --font-cabinet: 'Cabinet Grotesk', sans-serif;
+  --font-caveat: 'Caveat', cursive;
+}
+
+@layer base {
+  body {
+    @apply bg-cream text-navy font-cabinet cursor-none overflow-x-hidden;
+  }
+}
+
+@layer components {
+  /* Restore original section spacing */
+  .section {
+    @apply py-[100px] px-[48px] max-md:py-[60px] max-md:px-[20px];
+  }
+  
+  .section-label {
+    @apply font-caveat text-[22px] text-coral mb-2;
+  }
+  
+  .section-title {
+    @apply font-clash text-[clamp(36px,4vw,56px)] font-bold tracking-[-2px] leading-[1.1] mb-3;
+  }
+
+  /* Original Navigation styles */
+  .nav-link {
+    @apply no-underline text-navy font-bold text-[15px] relative after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:right-0 after:h-[3px] after:bg-coral after:scale-x-0 after:transition-transform after:duration-200 after:origin-left hover:after:scale-x-100;
+  }
+
+  /* Original Buttons */
+  .btn-primary {
+    @apply bg-coral text-white px-[36px] py-[16px] rounded-full font-extrabold text-[16px] border-3 border-navy shadow-[5px_5px_0_var(--color-navy)] transition-all inline-block no-underline hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[8px_8px_0_var(--color-navy)];
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-navy px-[36px] py-[16px] rounded-full font-extrabold text-[16px] border-3 border-navy shadow-[5px_5px_0_var(--color-navy)] transition-all inline-block no-underline hover:bg-yellow hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[8px_8px_0_var(--color-navy)];
+  }
+}

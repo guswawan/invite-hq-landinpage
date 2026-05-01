@@ -1,0 +1,450 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { events } from "../data/events";
+import StaggerTestimonials from "../components/StaggerTestimonials.astro";
+---
+
+<Layout 
+	title="Undangku — Undangan Digital yang Beda"
+	description="Buat undangan digital seru untuk pernikahan, lamaran, ulang tahun, dan wisuda. Link personal namakamu.undangku.com, desain unik hand-drawn, dan mudah dibagikan ke WhatsApp."
+>
+	<!-- HEADER: Restored original design -->
+	<header
+		class="fixed top-0 left-0 right-0 z-[100] bg-cream/85 backdrop-blur-[12px] border-b-2 border-navy"
+	>
+		<nav
+			class="flex items-center justify-between px-12 py-5 max-md:px-5 max-md:py-4"
+			aria-label="Navigasi utama"
+		>
+			<a
+				href="#hero"
+				class="font-clash text-[28px] font-bold tracking-tighter text-navy no-underline"
+				>undang<span class="text-coral">ku</span></a
+			>
+			<ul class="hidden md:flex gap-8 list-none">
+				<li><a href="#events" class="nav-link">Acara</a></li>
+				<li><a href="#how" class="nav-link">Cara Kerja</a></li>
+				<li>
+					<a
+						href="https://wa.me/628981911222?text=Halo%20Admin%2C%20saya%20sedang%20mencari%20model%20undangan%20digital%20yang%20cocok%20untuk%20acara%20saya%20butuh%20saran%20nih.%20Masih%20agak%20bingung%20pilih%20yang%20mana.%20Bisa%20dibantu%3F"
+						class="nav-link"
+						target="_blank">Buat Undangan</a
+					>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<!-- HERO: Restored original design -->
+		<section
+			class="min-h-screen flex items-center px-12 py-[120px] relative overflow-hidden max-md:px-5 max-md:pt-[100px] max-md:pb-[60px]"
+			id="hero"
+		>
+			<div
+				class="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,87,51,0.12),transparent_50%),radial-gradient(circle_at_10%_80%,rgba(61,219,217,0.12),transparent_50%),radial-gradient(circle_at_50%_50%,rgba(255,210,63,0.06),transparent_70%)] pointer-events-none"
+			>
+			</div>
+
+			<!-- Floating deco shapes -->
+			<div
+				class="absolute top-[15%] right-[12%] text-[64px] animate-[float_4s_ease-in-out_infinite] pointer-events-none"
+			>
+				🎉
+			</div>
+			<div
+				class="absolute top-[60%] right-[6%] text-[48px] animate-[float_4s_ease-in-out_infinite_0.8s] pointer-events-none"
+			>
+				💌
+			</div>
+			<div
+				class="absolute bottom-[15%] left-[48%] text-[56px] animate-[float_4s_ease-in-out_infinite_1.4s] pointer-events-none"
+			>
+				✨
+			</div>
+			<div
+				class="absolute top-[29%] left-[40%] text-[40px] animate-[float_4s_ease-in-out_infinite_0.4s] pointer-events-none"
+			>
+				🎊
+			</div>
+
+			<div class="max-w-[700px] relative z-10">
+				<p
+					class="inline-flex items-center gap-2 bg-yellow px-[18px] py-2 rounded-full font-extrabold text-[13px] border-2 border-navy mb-7 animate-[slideUp_0.6s_ease_both]"
+				>
+					<span class="w-2 h-2 bg-coral rounded-full animate-pulse"
+					></span>
+					Undangan dengan ilustrasi tangan
+				</p>
+				<h1
+					class="font-clash text-[clamp(52px,7vw,90px)] font-bold leading-none tracking-[-3px] animate-[slideUp_0.6s_0.1s_ease_both]"
+				>
+					Undangan<br />
+					<span
+						class="relative inline-block text-coral after:content-[''] after:absolute after:bottom-1 after:left-0 after:right-0 after:h-2 after:bg-yellow after:z-[-1] after:rounded"
+						>Digital</span
+					><br />
+					Seseru Acaramu
+				</h1>
+				<p
+					class="text-[20px] leading-relaxed max-w-[520px] my-6 text-gray-700 animate-[slideUp_0.6s_0.2s_ease_both]"
+				>
+					Buat undangan pernikahan, lamaran, ulang tahun, wisuda, dan
+					acara lainnya dalam satu platform. Link undangan lebih
+					personal menggunakan <strong>namakamu.undangku.com</strong> yang
+					mudah dibagikan ke WhatsApp dan media sosial.
+				</p>
+				<div
+					class="flex flex-wrap gap-4 animate-[slideUp_0.6s_0.3s_ease_both]"
+				>
+					<a
+						href="https://wa.me/628981911222?text=Halo%20Admin%2C%20saya%20sedang%20mencari%20model%20undangan%20digital%20yang%20cocok%20untuk%20acara%20saya%20butuh%20saran%20nih.%20Masih%20agak%20bingung%20pilih%20yang%20mana.%20Bisa%20dibantu%3F"
+						class="btn-primary"
+						target="_blank">Buat Undanganmu</a
+					>
+					<a href="#events" class="btn-secondary">Lihat Contoh</a>
+				</div>
+				<p
+					class="inline-flex flex-col items-start gap-2 bg-navy text-cream px-6 py-4 rounded-2xl text-[15px] font-medium border-2 border-navy mt-8 animate-[slideUp_0.6s_0.4s_ease_both]"
+				>
+					<span class="flex items-center gap-2 opacity-90">
+						<span aria-hidden="true">💡</span> Link undangan jadi personal
+						dengan:
+					</span>
+					<strong class="text-lg mx-auto">
+						<span class="text-yellow font-extrabold">namakamu</span
+						><span class="text-coral">.undangku.com</span>
+					</strong>
+				</p>
+			</div>
+		</section>
+
+		<!-- STATS: Restored original design -->
+		<section
+			class="bg-navy border-y-3 border-navy py-8 px-12 flex flex-col items-center gap-7 max-md:px-5 max-md:py-6 max-md:gap-6"
+			id="stats"
+		>
+			<div class="text-center max-w-[560px]">
+				<h2
+					class="font-clash text-[clamp(20px,2.2vw,24px)] font-bold text-cream tracking-tight mb-2"
+				>
+					Dipercaya Ratusan Pasangan & Host Acara
+				</h2>
+				<p class="text-[14px] text-cream/85 leading-relaxed">
+					Platform undangan digital Indonesia untuk pernikahan,
+					lamaran, ulang tahun, wisuda, dan acara spesial dengan
+					desain unik, mudah dibagikan.
+				</p>
+			</div>
+			<div
+				class="flex flex-wrap justify-center gap-12 max-md:gap-x-10 max-md:gap-y-7"
+			>
+				<div class="text-center text-cream">
+					<span
+						class="block font-clash text-4xl font-bold text-yellow leading-none"
+						>10K+</span
+					>
+					<span
+						class="block text-[13px] font-semibold opacity-85 mt-1"
+						>Undangan Digital Dikirim</span
+					>
+				</div>
+				<div class="text-center text-cream">
+					<span
+						class="block font-clash text-4xl font-bold text-yellow leading-none"
+						>98%</span
+					>
+					<span
+						class="block text-[13px] font-semibold opacity-85 mt-1"
+						>Pelanggan Puas</span
+					>
+				</div>
+				<div class="text-center text-cream">
+					<span
+						class="block font-clash text-4xl font-bold text-yellow leading-none"
+						>50+</span
+					>
+					<span
+						class="block text-[13px] font-semibold opacity-85 mt-1"
+						>Desain Ilustrasi Eksklusif</span
+					>
+				</div>
+				<div class="text-center text-cream">
+					<span
+						class="block font-clash text-4xl font-bold text-yellow leading-none"
+						>10+</span
+					>
+					<span
+						class="block text-[13px] font-semibold opacity-85 mt-1"
+						>Jenis Acara</span
+					>
+				</div>
+			</div>
+		</section>
+
+		<!-- EVENTS: Keep only this section updated with Block Game style -->
+		<section class="section" id="events">
+			<div class="mb-12">
+				<p class="section-label">🎈 Untuk semua momen</p>
+				<h2 class="section-title">
+					Semua Acara,<br />Satu Platform
+				</h2>
+				<p class="text-[17px] opacity-85 leading-relaxed max-w-[560px]">
+					Pilih tema yang sesuai dengan acaramu dan lihat koleksi
+					kami.
+				</p>
+			</div>
+			<div
+				class="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-5"
+			>
+				{
+					events.map((event) => (
+						<a
+							href={event.link}
+							class="group no-underline text-inherit"
+						>
+							<div
+								class="border-3 border-navy rounded-[24px] py-10 px-6 text-center transition-all duration-200 shadow-[6px_6px_0_var(--color-navy)] group-hover:-translate-x-1 group-hover:-translate-y-1 group-hover:scale-[1.02] group-hover:shadow-[10px_10px_0_var(--color-navy)] relative overflow-hidden"
+								style={`background: ${event.color}`}
+							>
+								<span class="text-[56px] block mb-3 transition-transform duration-300 group-hover:scale-125 group-hover:rotate-6">
+									{event.emoji}
+								</span>
+								<span class="font-clash font-bold text-lg tracking-tight">
+									{event.name}
+								</span>
+								<div class="absolute bottom-0 left-0 right-0 bg-navy text-white font-extrabold text-xs py-2 translate-y-full transition-transform duration-200 group-hover:translate-y-0 group-active:translate-y-0">
+									LIHAT KOLEKSI →
+								</div>
+							</div>
+						</a>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- HOW IT WORKS: Restored original design -->
+		<section class="section" id="how">
+			<div
+				class="bg-navy text-cream rounded-[32px] px-16 py-20 relative overflow-hidden max-md:px-7 max-md:py-12"
+			>
+				<p class="font-caveat text-[22px] text-yellow mb-2">
+					✦ Mudah banget
+				</p>
+				<h2 class="section-title text-cream">
+					3 Langkah & Undanganmu Jadi!
+				</h2>
+				<ol
+					class="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-8 list-none mt-12"
+				>
+					<li class="relative">
+						<span
+							class="font-clash text-[80px] font-bold text-white/[0.07] leading-none absolute -top-4 right-0"
+							>01</span
+						>
+						<span
+							class="w-[52px] h-[52px] rounded-2xl border-3 border-white/30 flex items-center justify-center text-2xl mb-4"
+							>🎨</span
+						>
+						<h3 class="text-xl font-extrabold mb-2">
+							Pilih Desain
+						</h3>
+						<p class="text-[15px] text-white/65 leading-relaxed">
+							Pilih desain undangan digital sesuai acara —
+							ilustrasi hand-drawn, unik, lebih personal & bisa
+							full dicustomisasi sesuai keinginan.
+						</p>
+					</li>
+					<li class="relative">
+						<span
+							class="font-clash text-[80px] font-bold text-white/[0.07] leading-none absolute -top-4 right-0"
+							>02</span
+						>
+						<span
+							class="w-[52px] h-[52px] rounded-2xl border-3 border-white/30 flex items-center justify-center text-2xl mb-4"
+							>✏️</span
+						>
+						<h3 class="text-xl font-extrabold mb-2">
+							Isi & Kustomisasi
+						</h3>
+						<p class="text-[15px] text-white/65 leading-relaxed">
+							Masukkan nama, tanggal, lokasi, foto & musik, semua
+							detail acaramu. Semua bisa diubah kapan saja.
+						</p>
+					</li>
+					<li class="relative">
+						<span
+							class="font-clash text-[80px] font-bold text-white/[0.07] leading-none absolute -top-4 right-0"
+							>03</span
+						>
+						<span
+							class="w-[52px] h-[52px] rounded-2xl border-3 border-white/30 flex items-center justify-center text-2xl mb-4"
+							>🚀</span
+						>
+						<h3 class="text-xl font-extrabold mb-2">
+							Bagikan Link Undangan
+						</h3>
+						<p class="text-[15px] text-white/65 leading-relaxed">
+							Dapatkan domain <strong
+								>namakamu.undangku.com</strong
+							> — bagikan ke tamu via WhatsApp, Instagram, atau media
+							sosial lainnya.
+						</p>
+					</li>
+				</ol>
+			</div>
+		</section>
+
+		<!-- TEMPLATES: Restored original design -->
+		<!-- <section class="section" id="templates">
+			<p class="section-label">🖼️ Yang telah didesain</p>
+			<h2 class="section-title">Undangan yang Bikin Tamu Terpesona</h2>
+			<div class="flex gap-6 overflow-x-auto pb-4 scrollbar-hide mt-12">
+				{
+					[
+						"Golden Sunset",
+						"Purple Dream",
+						"Mint Fresh",
+						"Warm Coral",
+						"Cool Wave",
+					].map((name, i) => (
+						<article class="flex-[0_0_280px] border-3 border-navy rounded-[24px] overflow-hidden shadow-[6px_6px_0_var(--color-navy)] transition-all hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_var(--color-navy)] cursor-pointer">
+							<div
+								class={`h-[200px] flex items-center justify-center relative font-clash bg-gradient-to-br ${
+									[
+										"from-[#ffb347] to-[#ff5733]",
+										"from-[#a18cd1] to-[#fbc2eb]",
+										"from-[#84fab0] to-[#8fd3f4]",
+										"from-[#fd746c] to-[#ff9068]",
+										"from-[#2cd8d5] to-[#c5c1ff]",
+									][i]
+								}`}
+							>
+								<div class="text-white text-[22px] font-bold text-center px-5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.2)] leading-tight">
+									Template Preview
+									<>
+										<br />
+										<small class="text-sm opacity-90">
+											Sample Event
+										</small>
+									</>
+								</div>
+							</div>
+							<div class="p-4 bg-white">
+								<span class="block font-extrabold text-base">
+									{name}
+								</span>
+								<span class="inline-block bg-yellow text-navy px-2.5 py-1 rounded-full text-[12px] font-extrabold mt-1.5 border-2 border-navy">
+									Showcase
+								</span>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</section> -->
+
+		<!-- TESTIMONIALS: Restored original design -->
+		<section class="section pt-0" id="testi">
+			<p class="section-label">❤️ Kata mereka</p>
+			<h2 class="section-title">Para Tamu Sudah Terkesan</h2>
+			<div class="mt-0">
+				<StaggerTestimonials />
+			</div>
+		</section>
+
+		<!-- CTA: Restored original design -->
+		<section
+			class="mx-12 mb-20 bg-yellow border-3 border-navy rounded-[32px] px-16 py-20 text-center shadow-[8px_8px_0_var(--color-navy)] relative overflow-hidden max-md:mx-5 max-md:mb-15 max-md:px-7 max-md:py-15"
+			id="cta"
+		>
+			<h2
+				class="font-clash text-[clamp(36px,5vw,64px)] font-bold tracking-[-2px] leading-[1.1] mb-5"
+			>
+				Siap Buat Undangan Digital<br />yang Beda? 🎉
+			</h2>
+			<p class="text-lg font-medium max-w-[480px] mx-auto mb-9">
+				Ratusan pasangan & host acara sudah pakai Undangku untuk
+				pernikahan, lamaran, dan acara spesial lainnya.
+			</p>
+			<div class="text-[14px] opacity-85 mb-8">
+				<span class="block font-semibold mb-1.5"
+					>Contoh URL undangan kamu:</span
+				>
+				<span
+					class="font-mono text-[15px] bg-cream px-3.5 py-2 rounded-lg border border-dashed border-navy inline-block"
+				>
+					<span class="text-coral font-bold">namakamu</span
+					>.undangku.com
+				</span>
+			</div>
+			<a
+				href="https://wa.me/628981911222?text=Halo%20Admin%2C%20saya%20sedang%20mencari%20model%20undangan%20digital%20yang%20cocok%20untuk%20acara%20saya%20butuh%20saran%20nih.%20Masih%20agak%20bingung%20pilih%20yang%20mana.%20Bisa%20dibantu%3F"
+				class="btn-primary text-lg px-12 py-[18px] min-w-[280px] max-md:w-full max-md:min-w-0 max-md:max-w-[320px]"
+				target="_blank">Buat Undangan Kamu Sekarang ✨</a
+			>
+		</section>
+	</main>
+
+	<!-- FOOTER: Restored original design -->
+	<footer
+		class="bg-navy text-cream pt-15 pb-8 px-12 border-t-3 border-navy max-md:px-5 max-md:pt-12"
+	>
+		<div
+			class="flex justify-between items-start flex-wrap gap-12 pb-12 border-b border-white/10"
+		>
+			<div class="max-w-[280px]">
+				<a href="#hero" class="inline-block mb-3 no-underline">
+					<span class="font-clash text-[28px] font-bold text-cream"
+						>undang<span class="text-yellow">ku</span></span
+					>
+				</a>
+				<p class="text-[14px] opacity-85 leading-relaxed">
+					Platform undangan digital Indonesia — pernikahan, lamaran,
+					ulang tahun & acara spesial. Desain unik, mudah dibagikan
+					via WhatsApp.
+				</p>
+			</div>
+		</div>
+		<div
+			class="pt-6 flex justify-end items-center text-[13px] opacity-50 flex-wrap gap-3"
+		>
+			<span
+				>© 2026 Undangku — undangan digital yang beda. Dibuat dengan ❤️
+				di 🇮🇩</span
+			>
+		</div>
+	</footer>
+</Layout>
+
+<style>
+	/* Custom animations from original CSS */
+	@keyframes float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(0deg);
+		}
+		50% {
+			transform: translateY(-14px) rotate(5deg);
+		}
+	}
+
+	@keyframes slideUp {
+		from {
+			opacity: 0;
+			transform: translateY(24px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.scrollbar-hide::-webkit-scrollbar {
+		display: none;
+	}
+	.scrollbar-hide {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+</style>
