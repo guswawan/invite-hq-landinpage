@@ -13,6 +13,5 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  adapter: cloudflare(),
   integrations: [react()]
 });
