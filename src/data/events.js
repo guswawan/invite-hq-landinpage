@@ -3,7 +3,7 @@ export const events = [
     id: 'pernikahan',
     name: 'Pernikahan',
     emoji: '💍',
-    color: '#f600d5ff',
+    color: '#f731dcff',
     link: '/pernikahan',
     collections: [
       {
@@ -16,15 +16,6 @@ export const events = [
         themeColor: '15 85% 65%', // HSL format for Card 21
       },
       {
-        name: 'Yasmine & Pamungkas',
-        tag: 'Wedding',
-        category: 'Studio Collection',
-        date: '12 Juni 2026',
-        image: 'https://yasminenpamungkas.undangku.com/preview.webp',
-        previewUrl: 'https://yasminenpamungkas.undangku.com/lorem',
-        themeColor: '270 60% 45%',
-      },
-      {
         name: 'Andra & Andin',
         tag: 'Wedding',
         category: 'Studio Collection',
@@ -32,6 +23,24 @@ export const events = [
         image: 'https://andrandinwedding.pages.dev/preview.webp',
         previewUrl: 'https://andrandinwedding.pages.dev/Lorem%20Ipsum',
         themeColor: '340 70% 60%',
+      },
+      {
+        name: 'Angga & Zahra',
+        tag: 'Wedding',
+        category: 'Ready Concept',
+        date: '2026',
+        image: 'https://invite-hq-wedding-rcsatu.pages.dev/preview.webp',
+        previewUrl: 'https://invite-hq-wedding-rcsatu.pages.dev/Lorem%20Ipsum',
+        themeColor: '210 50% 40%',
+      },
+      {
+        name: 'Yasmine & Pamungkas',
+        tag: 'Wedding',
+        category: 'Studio Collection',
+        date: '12 Juni 2026',
+        image: 'https://yasminenpamungkas.undangku.com/preview.webp',
+        previewUrl: 'https://yasminenpamungkas.undangku.com/lorem',
+        themeColor: '270 60% 45%',
       },
       {
         name: 'Sekar & Habib',
