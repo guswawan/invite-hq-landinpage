@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
 
+import BackToTop from "../components/BackToTop.astro";
+
 interface Props {
 	title: string;
 	description?: string;
@@ -60,6 +62,8 @@ const {
 		</div>
 
 		<slot />
+
+		<BackToTop />
 
 		<script>
 			// Custom cursor logic
