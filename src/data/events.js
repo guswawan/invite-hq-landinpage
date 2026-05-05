@@ -79,7 +79,7 @@ export const events = [
     link: '/ulang-tahun',
     collections: [
       {
-        name: 'Andreas Bday',
+        name: `Andreas's Birthday`,
         tag: 'Birthday',
         date: '2026',
         image: 'https://andreasbday.undangku.com/preview.webp',
@@ -96,7 +96,7 @@ export const events = [
     link: '/wisuda',
     collections: [
       {
-        name: 'Ellina Grad',
+        name: `Ellina's Graduation`,
         tag: 'Wisuda',
         date: '2026',
         image: 'https://ellinagrad.undangku.com/preview.webp',
