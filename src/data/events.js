@@ -12,7 +12,7 @@ export const events = [
         category: 'Ready Concept',
         date: '17 Maret 2026',
         image: 'https://hannogeswedding.undangku.com/preview.webp',
-        previewUrl: 'https://hannogeswedding.undangku.com/olie',
+        previewUrl: 'https://hannogeswedding.undangku.com/Lorem%20Ipsum',
         themeColor: '15 85% 65%', // HSL format for Card 21
       },
       {

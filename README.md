@@ -1,43 +1,80 @@
-# Astro Starter Kit: Minimal
+# 💌 Undangku — Undangan Digital Seseru Acaramu
+
+**Undangku** (by Invite-HQ) is a premium digital invitation platform designed to make your special moments even more memorable. Built with a focus on unique aesthetics, hand-drawn illustrations, and a seamless user experience.
+
+![Undangku Preview](/public/og-image.png)
+
+## ✨ Features
+
+- 🎨 **Unique Hand-Drawn Illustrations**: Stand out with designs that feel personal and artistic.
+- 🔗 **Personalized Domains**: Professional links like `namakamu.undangku.com`.
+- 📱 **Mobile First & WhatsApp Ready**: Easy to share and perfectly optimized for mobile devices.
+- ⚡ **Lightning Fast**: Built on Astro for peak performance and SEO.
+- 🖱️ **Interactive UX**: Custom animated cursor and smooth transitions.
+- 🧩 **Multi-Event Support**: From weddings and engagements to birthdays and graduations.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Astro 6](https://astro.build/) (Static Site Generation)
+- **UI Library**: [React 19](https://reactjs.org/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Animations**: CSS Animations & Lottie (Optional)
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js `^22.12.0`
+- pnpm (recommended)
+
+### Installation
 
 ```sh
-npm create astro@latest -- --template minimal
+# Clone the repository
+git clone https://github.com/guswawan/invite-hq-landingpage.git
+
+# Install dependencies
+pnpm install
+
+# Start the development server
+pnpm dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Commands
 
-## 🚀 Project Structure
+| Command | Action |
+| :--- | :--- |
+| `pnpm dev` | Starts local dev server at `localhost:4321` |
+| `pnpm build` | Build your production site to `./dist/` |
+| `pnpm preview` | Preview your build locally |
+| `pnpm astro ...` | Run Astro CLI commands |
 
-Inside of your Astro project, you'll see the following folders and files:
+## 📁 Project Structure
 
 ```text
 /
-├── public/
+├── public/          # Static assets (images, icons, etc.)
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/  # Reusable UI components
+│   ├── data/        # Static data (events, testimonials)
+│   ├── layouts/     # Page layouts
+│   ├── pages/       # Site routes (Astro pages)
+│   └── styles/      # Global CSS and Tailwind configuration
+├── astro.config.mjs # Astro configuration
+└── package.json     # Dependencies and scripts
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🌐 Deployment
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+This project is optimized for **Cloudflare Pages**.
 
-Any static assets, like images, can be placed in the `public/` directory.
+```sh
+pnpm build
+# Deployment is handled automatically via GitHub Actions or Wrangler
+```
 
-## 🧞 Commands
+---
 
-All commands are run from the root of the project, from a terminal:
+Built with ❤️ by [guswawan](https://github.com/guswawan) in 🇮🇩
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
