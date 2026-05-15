@@ -94,17 +94,19 @@ const {
 			}
 			animateFollower();
 
-			document.querySelectorAll("a, button").forEach((el) => {
-				el.addEventListener("mouseenter", () => {
-					if (cursor) {
-						cursor.classList.add("scale-200", "bg-yellow");
-					}
-				});
-				el.addEventListener("mouseleave", () => {
-					if (cursor) {
-						cursor.classList.remove("scale-200", "bg-yellow");
-					}
-				});
+			// Use event delegation for cursor interactions (handles dynamic elements)
+			document.addEventListener("mouseover", (e) => {
+				const target = (e.target as HTMLElement).closest("a, button");
+				if (target && cursor) {
+					cursor.classList.add("scale-200", "bg-yellow");
+				}
+			});
+
+			document.addEventListener("mouseout", (e) => {
+				const target = (e.target as HTMLElement).closest("a, button");
+				if (target && cursor) {
+					cursor.classList.remove("scale-200", "bg-yellow");
+				}
 			});
 		</script>
 	</body>
