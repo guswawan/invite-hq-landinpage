@@ -83,14 +83,13 @@ function CardContent({ data }: { data: Card['data'] }) {
           <span className="truncate font-clash font-bold text-lg text-navy">{data.title}</span>
           <span className="text-sm font-medium text-navy/60">{data.description}</span>
         </div>
-        <a
-          href={data.categoryLink}
+        <button
           data-preview={data.previewUrl}
           className="destination-card flex h-10 shrink-0 cursor-pointer select-none items-center gap-1 rounded-full bg-navy px-4 text-[13px] font-bold text-cream hover:bg-coral transition-colors"
         >
           Preview
           <ChevronRight className="w-4 h-4" strokeWidth={3} />
-        </a>
+        </button>
       </div>
     </div>
   )
