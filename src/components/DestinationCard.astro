@@ -1,4 +1,5 @@
 ---
+import { cn } from "@/lib/utils";
 const { name, date, image, previewUrl, themeColor, category } = Astro.props;
 ---
 
@@ -11,11 +12,12 @@ const { name, date, image, previewUrl, themeColor, category } = Astro.props;
 		class="relative w-full h-full border-3 border-navy rounded-[24px] overflow-hidden transition-all duration-200 ease-in-out group-hover:-translate-x-1 group-hover:-translate-y-1 group-hover:scale-[1.02] shadow-[6px_6px_0_var(--color-navy)] group-hover:shadow-[10px_10px_0_var(--color-navy)]"
 	>
 		{/* Background Image */}
-		<div
-			class="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-in-out group-hover:scale-110"
-			style={`background-image: url(${image});`}
-		>
-		</div>
+		<img
+			src={image}
+			alt={name}
+			loading="lazy"
+			class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+		/>
 
 		{/* Themed Gradient Overlay */}
 		<div
@@ -31,11 +33,11 @@ const { name, date, image, previewUrl, themeColor, category } = Astro.props;
 			<h3 class="font-clash text-3xl font-bold tracking-tight mb-1">
 				{name}
 			</h3>
-			<!-- <p class="text-sm font-medium opacity-80 mb-6">{date}</p> -->
 			<p class="text-sm font-medium opacity-80 mb-6">{category}</p>
 
 			{/* Explore Button */}
 			<button
+				type="button"
 				class="flex items-center justify-between px-5 py-3.5 rounded-xl bg-white/15 backdrop-blur-md border border-white/20 text-white font-bold text-[15px] cursor-pointer transition-all duration-300 group-hover:bg-white/25 group-hover:border-white/40"
 			>
 				<span>Lihat Undangan</span>
