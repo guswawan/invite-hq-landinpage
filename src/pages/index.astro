@@ -73,7 +73,9 @@ import AnimatedCardStack from "@/components/ui/animate-card-animation";
 				class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-x-12 gap-y-12 relative z-10"
 			>
 				{/* Column 1: Text Content (Rows 1, 2, 4, 5 on Mobile) */}
-				<div class="flex flex-col items-start max-md:items-center max-md:text-center">
+				<div
+					class="flex flex-col items-start max-md:items-center max-md:text-center"
+				>
 					<p
 						class="inline-flex items-center gap-2 bg-yellow px-[18px] py-2 rounded-full font-extrabold text-[13px] border-2 border-navy mb-7 animate-[slideUp_0.6s_ease_both]"
 					>
@@ -103,24 +105,30 @@ import AnimatedCardStack from "@/components/ui/animate-card-animation";
 					</p>
 				</div>
 
-				{/* Column 2: Visual Content (Row 3 on Mobile, Row 1-4 on Desktop) */}
+				{
+					/* Column 2: Visual Content (Row 3 on Mobile, Row 1-4 on Desktop) */
+				}
 				<div
-					class="lg:row-span-4 self-center animate-[slideUp_0.6s_0.2s_ease_both] lg:-translate-x-10 xl:-translate-x-20"
+					class="lg:row-span-4 self-center animate-[slideUp_0.6s_0.2s_ease_both] lg:-translate-x-10 xl:-translate-x-20 lg:-translate-y-24"
 				>
 					<AnimatedCardStack client:load />
 				</div>
 
 				{/* Column 1: Buttons and Badge (Desktop) */}
-				<div class="lg:col-start-1 flex flex-col items-start max-md:items-center">
+				<div
+					class="lg:col-start-1 flex flex-col items-start max-md:items-center"
+				>
 					<div
-						class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-8 animate-[slideUp_0.6s_0.3s_ease_both] max-md:w-full max-md:items-center"
+						class="flex flex-col sm:flex-row items-start sm:items-center gap-4 animate-[slideUp_0.6s_0.3s_ease_both] max-md:w-full max-md:items-center"
 					>
 						<a
 							href="https://wa.me/628981911222?text=Halo%20Admin%2C%20saya%20sedang%20mencari%20model%20undangan%20digital%20yang%20cocok%20untuk%20acara%20saya%20butuh%20saran%20nih.%20Masih%20agak%20bingung%20pilih%20yang%20mana.%20Bisa%20dibantu%3F"
 							class="btn-primary w-auto px-6 max-md:w-full"
 							target="_blank">Buat Undangan</a
 						>
-						<a href="#events" class="btn-secondary w-auto px-6 max-md:w-full"
+						<a
+							href="#events"
+							class="btn-secondary w-auto px-6 max-md:w-full"
 							>Lihat Koleksi Undangan</a
 						>
 					</div>

@@ -41,8 +41,8 @@ const initialCards: Card[] = allCollections.map((item, index) => ({
 
 const positionStyles = [
   { scale: 1, y: 12 },
-  { scale: 0.95, y: -20 },
-  { scale: 0.9, y: -52 },
+  { scale: 0.95, y: -16 },
+  { scale: 0.9, y: -44 },
 ]
 
 const exitAnimation = {
@@ -94,7 +94,7 @@ function AnimatedCard({
   isAnimating: boolean
 }) {
   const { scale, y } = positionStyles[index] ?? positionStyles[2]
-  const zIndex = index === 0 && isAnimating ? 10 : 3 - index
+  const zIndex = 3 - index
 
   const exitAnim = index === 0 ? exitAnimation : undefined
   const initialAnim = index === 2 ? enterAnimation : undefined
@@ -102,15 +102,13 @@ function AnimatedCard({
   return (
     <motion.div
       key={card.id}
-      initial={{ ...initialAnim, filter: "blur(10px)", opacity: 0 }}
-      animate={{ y, scale, filter: "blur(0px)", opacity: 1 }}
-      exit={{ ...exitAnim }}
+      initial={initialAnim}
+      animate={{ y, scale }}
+      exit={exitAnim}
       transition={{
         type: "spring",
         duration: 1,
         bounce: 0,
-        opacity: { duration: 0.4 },
-        filter: { duration: 0.4 }
       }}
       style={{
         zIndex,
@@ -118,7 +116,7 @@ function AnimatedCard({
         x: "-50%",
         bottom: 0,
       }}
-      className="absolute flex h-[340px] w-[380px] items-center justify-center overflow-hidden rounded-t-[32px] border-x-3 border-t-3 border-navy bg-white p-2.5 shadow-[4px_0_0_var(--color-navy)] will-change-transform"
+      className="absolute flex h-[340px] w-[380px] items-center justify-center overflow-hidden rounded-t-[32px] border-x-3 border-t-3 border-navy bg-[#fdf1e2] p-2.5 shadow-[4px_0_0_var(--color-navy)] will-change-transform"
     >
       <CardContent data={card.data} isHero={index === 0} />
     </motion.div>
@@ -170,8 +168,8 @@ export default function AnimatedCardStack() {
       {/* DESKTOP: Stacked Cards */}
       <div className="hidden lg:flex relative h-[480px] -mt-24 w-full overflow-hidden sm:w-[500px] flex-col items-center">
         <div className="relative h-[480px] w-full">
-          <AnimatePresence 
-            initial={false} 
+          <AnimatePresence
+            initial={false}
             onExitComplete={() => setIsAnimating(false)}
           >
             {cards.slice(0, 3).map((card, index) => (
