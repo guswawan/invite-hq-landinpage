@@ -19,7 +19,7 @@
 - **UI Library**: [React 19](https://reactjs.org/)
 - **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
 - **Icons**: [Lucide React](https://lucide.dev/)
-- **Animations**: CSS Animations & Lottie (Optional)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/), CSS Animations
 
 ## 🚀 Getting Started
 
@@ -40,6 +40,12 @@ pnpm install
 # Start the development server
 pnpm dev
 ```
+
+## 🎨 Interactive Elements
+
+- **Hero Stack**: An interactive 3D card stack powered by Framer Motion.
+- **Infinite Marquee**: A seamless mobile-optimized showcase of event designs.
+- **Custom Cursor**: A magnetic-style cursor for enhanced desktop navigation.
 
 ### Commands
 

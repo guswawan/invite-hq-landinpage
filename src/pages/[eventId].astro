@@ -1,8 +1,8 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import DestinationCard from "../components/DestinationCard.astro";
-import PreviewModal from "../components/PreviewModal.astro";
-import { events } from "../data/events";
+import Layout from "@/layouts/Layout.astro";
+import DestinationCard from "@/components/DestinationCard.astro";
+import PreviewModal from "@/components/PreviewModal.astro";
+import { events } from "@/data/events";
 
 export function getStaticPaths() {
 	return events.map((event) => ({
