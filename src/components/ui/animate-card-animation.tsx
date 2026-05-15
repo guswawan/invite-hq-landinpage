@@ -134,30 +134,26 @@ export default function AnimatedCardStack() {
     if (isAnimating) return
     setIsAnimating(true)
 
-    // Delay setting isAnimating to false to match transition
-    setTimeout(() => {
-      const nextItem = allCollections[nextIndex % allCollections.length]
+    const nextItem = allCollections[nextIndex % allCollections.length]
 
-      setCards(prev => {
-        const newCards = [...prev.slice(1)]
-        newCards.push({
-          id: Date.now(), // Unique ID for each animation cycle
-          contentType: nextIndex,
-          data: {
-            title: nextItem.name,
-            description: nextItem.category || nextItem.tag,
-            image: nextItem.image,
-            previewUrl: nextItem.previewUrl,
-            eventName: nextItem.eventName,
-            categoryLink: nextItem.categoryLink
-          }
-        })
-        return newCards
+    setCards(prev => {
+      const newCards = [...prev.slice(1)]
+      newCards.push({
+        id: Date.now(), // Unique ID for each animation cycle
+        contentType: nextIndex,
+        data: {
+          title: nextItem.name,
+          description: nextItem.category || nextItem.tag,
+          image: nextItem.image,
+          previewUrl: nextItem.previewUrl,
+          eventName: nextItem.eventName,
+          categoryLink: nextItem.categoryLink
+        }
       })
+      return newCards
+    })
 
-      setNextIndex(prev => prev + 1)
-      setIsAnimating(false)
-    }, 50)
+    setNextIndex(prev => prev + 1)
   }
 
   return (
@@ -174,7 +170,10 @@ export default function AnimatedCardStack() {
       {/* DESKTOP: Stacked Cards */}
       <div className="hidden lg:flex relative h-[480px] -mt-24 w-full overflow-hidden sm:w-[500px] flex-col items-center">
         <div className="relative h-[480px] w-full">
-          <AnimatePresence initial={false}>
+          <AnimatePresence 
+            initial={false} 
+            onExitComplete={() => setIsAnimating(false)}
+          >
             {cards.slice(0, 3).map((card, index) => (
               <AnimatedCard key={card.id} card={card} index={index} isAnimating={isAnimating} />
             ))}
