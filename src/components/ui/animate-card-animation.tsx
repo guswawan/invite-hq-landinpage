@@ -1,9 +1,8 @@
-"use client"
-
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { events } from "@/data/events"
 import { ChevronRight } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 interface Card {
   id: number
@@ -46,17 +45,6 @@ const positionStyles = [
   { scale: 0.9, y: -52 },
 ]
 
-// const exitAnimation = {
-//   y: 10,
-//   scale: 1,
-//   zIndex: 10,
-// }
-
-// const enterAnimation = {
-//   y: 80,
-//   scale: 0.8,
-// }
-
 const exitAnimation = {
   y: 340,
   scale: 1,
@@ -68,13 +56,14 @@ const enterAnimation = {
   scale: 0.9,
 }
 
-function CardContent({ data }: { data: Card['data'] }) {
+function CardContent({ data, isHero = false }: { data: Card['data'], isHero?: boolean }) {
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <div className="flex h-[280px] w-full items-center justify-center overflow-hidden rounded-[22px] border-2 border-navy bg-cream">
         <img
           src={data.image || "/placeholder.svg"}
           alt={data.title}
+          loading={isHero ? "eager" : "lazy"}
           className="h-full w-full select-none object-cover"
         />
       </div>
@@ -131,7 +120,7 @@ function AnimatedCard({
       }}
       className="absolute flex h-[340px] w-[380px] items-center justify-center overflow-hidden rounded-t-[32px] border-x-3 border-t-3 border-navy bg-white p-2.5 shadow-[4px_0_0_var(--color-navy)] will-change-transform"
     >
-      <CardContent data={card.data} />
+      <CardContent data={card.data} isHero={index === 0} />
     </motion.div>
   )
 }
@@ -195,7 +184,9 @@ export default function AnimatedCardStack() {
       <div className="hidden lg:flex relative z-10 -mt-px flex w-full items-center justify-center py-0">
         <button
           onClick={handleAnimate}
-          className="flex h-12 cursor-pointer select-none items-center justify-center gap-2 overflow-hidden rounded-xl border-3 border-navy bg-yellow px-8 font-bold text-navy shadow-[4px_4px_0_var(--color-navy)] transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_var(--color-navy)] active:translate-x-0 active:translate-y-0 active:shadow-none"
+          className={cn(
+            "flex h-12 cursor-pointer select-none items-center justify-center gap-2 overflow-hidden rounded-xl border-3 border-navy bg-yellow px-8 font-bold text-navy shadow-[4px_4px_0_var(--color-navy)] transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_var(--color-navy)] active:translate-x-0 active:translate-y-0 active:shadow-none"
+          )}
         >
           Lihat Desain Lainnya
         </button>
@@ -234,6 +225,7 @@ export default function AnimatedCardStack() {
                 <img
                   src={item.image}
                   alt={item.name}
+                  loading={idx < 2 ? "eager" : "lazy"}
                   className="w-full h-full object-cover"
                 />
               </div>
