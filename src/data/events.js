@@ -7,13 +7,13 @@ export const events = [
     link: '/pernikahan',
     collections: [
       {
-        name: 'Hanno & Gemilang',
+        name: 'Angga & Zahra',
         tag: 'Wedding',
         category: 'Ready Concept',
-        date: '17 Maret 2026',
-        image: 'https://hannogeswedding.undangku.com/preview.webp',
-        previewUrl: 'https://hannogeswedding.undangku.com/Lorem%20Ipsum',
-        themeColor: '15 85% 65%', // HSL format for Card 21
+        date: '2026',
+        image: 'https://invite-hq-wedding-rcsatu.pages.dev/preview.webp',
+        previewUrl: 'https://invite-hq-wedding-rcsatu.pages.dev/Lorem%20Ipsum',
+        themeColor: '210 50% 40%',
       },
       {
         name: 'Andra & Andin',
@@ -25,13 +25,13 @@ export const events = [
         themeColor: '340 70% 60%',
       },
       {
-        name: 'Angga & Zahra',
+        name: 'Hanno & Gemilang',
         tag: 'Wedding',
         category: 'Ready Concept',
-        date: '2026',
-        image: 'https://invite-hq-wedding-rcsatu.pages.dev/preview.webp',
-        previewUrl: 'https://invite-hq-wedding-rcsatu.pages.dev/Lorem%20Ipsum',
-        themeColor: '210 50% 40%',
+        date: '17 Maret 2026',
+        image: 'https://hannogeswedding.undangku.com/preview.webp',
+        previewUrl: 'https://hannogeswedding.undangku.com/Lorem%20Ipsum',
+        themeColor: '15 85% 65%', // HSL format for Card 21
       },
       {
         name: 'Yasmine & Pamungkas',

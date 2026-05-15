@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { events } from "../data/events";
 import StaggerTestimonials from "../components/StaggerTestimonials.astro";
+import AnimatedCardStack from "@/components/ui/animate-card-animation";
 ---
 
 <Layout
@@ -68,54 +69,73 @@ import StaggerTestimonials from "../components/StaggerTestimonials.astro";
 				🎊
 			</div>
 
-			<div class="max-w-[700px] relative z-10">
-				<p
-					class="inline-flex items-center gap-2 bg-yellow px-[18px] py-2 rounded-full font-extrabold text-[13px] border-2 border-navy mb-7 animate-[slideUp_0.6s_ease_both]"
-				>
-					<span class="w-2 h-2 bg-coral rounded-full animate-pulse"
-					></span>
-					Undangan dengan ilustrasi tangan
-				</p>
-				<h1
-					class="font-clash text-[clamp(52px,7vw,90px)] font-bold leading-none tracking-[-3px] animate-[slideUp_0.6s_0.1s_ease_both]"
-				>
-					Undangan<br />
-					<span
-						class="relative inline-block text-coral after:content-[''] after:absolute after:bottom-1 after:left-0 after:right-0 after:h-2 after:bg-yellow after:z-[-1] after:rounded"
-						>Digital</span
-					><br />
-					Seseru Acaramu
-				</h1>
-				<p
-					class="text-[20px] leading-relaxed max-w-[520px] my-6 text-gray-700 animate-[slideUp_0.6s_0.2s_ease_both]"
-				>
-					Buat undangan pernikahan, lamaran, ulang tahun, wisuda, dan
-					acara lainnya dalam satu platform. Link undangan lebih
-					personal menggunakan <strong>namakamu.undangku.com</strong> yang
-					mudah dibagikan ke WhatsApp dan media sosial.
-				</p>
-				<div
-					class="flex flex-wrap gap-4 animate-[slideUp_0.6s_0.3s_ease_both]"
-				>
-					<a
-						href="https://wa.me/628981911222?text=Halo%20Admin%2C%20saya%20sedang%20mencari%20model%20undangan%20digital%20yang%20cocok%20untuk%20acara%20saya%20butuh%20saran%20nih.%20Masih%20agak%20bingung%20pilih%20yang%20mana.%20Bisa%20dibantu%3F"
-						class="btn-primary"
-						target="_blank">Buat Undanganmu</a
+			<div
+				class="grid lg:grid-cols-[1fr_auto] gap-12 items-center w-full relative z-10"
+			>
+				<div class="max-w-[700px]">
+					<p
+						class="inline-flex items-center gap-2 bg-yellow px-[18px] py-2 rounded-full font-extrabold text-[13px] border-2 border-navy mb-7 animate-[slideUp_0.6s_ease_both]"
 					>
-					<a href="#events" class="btn-secondary">Lihat Contoh</a>
+						<span
+							class="w-2 h-2 bg-coral rounded-full animate-pulse"
+						></span>
+						Undangan dengan ilustrasi tangan
+					</p>
+					<h1
+						class="font-clash text-[clamp(52px,7vw,90px)] font-bold leading-none tracking-[-3px] animate-[slideUp_0.6s_0.1s_ease_both]"
+					>
+						Undangan<br />
+						<span
+							class="relative inline-block text-coral after:content-[''] after:absolute after:bottom-1 after:left-0 after:right-0 after:h-2 after:bg-yellow after:z-[-1] after:rounded"
+							>Digital</span
+						><br />
+						Seseru Acaramu
+					</h1>
+					<p
+						class="hidden lg:block text-[20px] leading-relaxed max-w-[520px] my-6 text-gray-700 animate-[slideUp_0.6s_0.2s_ease_both]"
+					>
+						Buat undangan pernikahan, lamaran, ulang tahun, wisuda,
+						dan acara lainnya dalam satu platform. Link undangan
+						lebih personal menggunakan <strong
+							>namakamu.undangku.com</strong
+						> yang mudah dibagikan ke WhatsApp dan media sosial.
+					</p>
+
+					<div class="lg:hidden">
+						<AnimatedCardStack client:load />
+					</div>
+					<div
+						class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-8 animate-[slideUp_0.6s_0.3s_ease_both]"
+					>
+						<a
+							href="https://wa.me/628981911222?text=Halo%20Admin%2C%20saya%20sedang%20mencari%20model%20undangan%20digital%20yang%20cocok%20untuk%20acara%20saya%20butuh%20saran%20nih.%20Masih%20agak%20bingung%20pilih%20yang%20mana.%20Bisa%20dibantu%3F"
+							class="btn-primary w-auto px-6"
+							target="_blank">Buat Undangan</a
+						>
+						<a href="#events" class="btn-secondary w-auto px-6"
+							>Lihat Koleksi Undangan</a
+						>
+					</div>
+					<p
+						class="inline-flex flex-col items-start gap-2 bg-navy text-cream px-6 py-4 rounded-2xl text-[15px] font-medium border-2 border-navy mt-8 animate-[slideUp_0.6s_0.4s_ease_both]"
+					>
+						<span class="flex items-center gap-2 opacity-90">
+							<span aria-hidden="true">💡</span> Link undangan jadi
+							personal dengan:
+						</span>
+						<strong class="text-lg mx-auto">
+							<span class="text-yellow font-extrabold"
+								>namakamu</span
+							><span class="text-coral">.undangku.com</span>
+						</strong>
+					</p>
 				</div>
-				<p
-					class="inline-flex flex-col items-start gap-2 bg-navy text-cream px-6 py-4 rounded-2xl text-[15px] font-medium border-2 border-navy mt-8 animate-[slideUp_0.6s_0.4s_ease_both]"
+
+				<div
+					class="hidden lg:block animate-[slideUp_0.6s_0.2s_ease_both] lg:-translate-x-10 xl:-translate-x-20"
 				>
-					<span class="flex items-center gap-2 opacity-90">
-						<span aria-hidden="true">💡</span> Link undangan jadi personal
-						dengan:
-					</span>
-					<strong class="text-lg mx-auto">
-						<span class="text-yellow font-extrabold">namakamu</span
-						><span class="text-coral">.undangku.com</span>
-					</strong>
-				</p>
+					<AnimatedCardStack client:load />
+				</div>
 			</div>
 		</section>
 
@@ -224,6 +244,7 @@ import StaggerTestimonials from "../components/StaggerTestimonials.astro";
 		</section>
 
 		<!-- HOW IT WORKS: Restored original design -->
+
 		<section class="section" id="how">
 			<div
 				class="bg-navy text-cream rounded-[32px] px-16 py-20 relative overflow-hidden max-md:px-7 max-md:py-12"
